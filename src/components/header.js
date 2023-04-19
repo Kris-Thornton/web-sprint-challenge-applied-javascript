@@ -1,3 +1,5 @@
+
+
 const Header = (title, date, temp) => {
   // TASK 1
   // ---------------------
@@ -52,8 +54,21 @@ const headerAppender = (selector) => {
   // ---------------------
   // Implement this function taking a css selector as its only argument.
   // It should create a header using the Header component above, passing arguments of your choosing.
+
+
   // It should append the header to the element in the DOM that matches the given selector.
   //
+ const cssSelector = document.querySelector(selector) 
+const mainDiv = Header('title', 'date', 'temp');
+cssSelector.append(mainDiv)  
+
+
+
+// const entrypoint = document.querySelector(selector);
+// const headDiv = Header('title', 'date', 'temp');
+// entrypoint.append(headDiv);
+
+
 
   // HINT: querySelector can take in a string (ie querySelector("#wrapper")) 
   // but it can also take in a variable (ie querySelector(selector))

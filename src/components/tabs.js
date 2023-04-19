@@ -1,4 +1,31 @@
+import axios from 'axios'
+
 const Tabs = (topics) => {
+  
+
+  const topicsDiv = document.createElement('div')
+topicsDiv.classList.add('topics');
+
+// making the first Div under the tabs container Div
+// Adding the class 'topics to the first Div called topicsDiv under the tabs container Div.
+
+
+const newTab = topics.forEach((item) => {
+  // create a new var with a iteration through the topics param each time making a sub Div, adding a class of 'tab' and text info that is passed using the item param.
+    const liDiv = document.createElement('div');
+    liDiv.classList.add('tab');
+    liDiv.textContent = item;
+
+    // returning the above information
+    return liDiv
+  })
+
+  newTab.forEach(item => {
+    topicsDiv.appendChild(item);
+// itterating through the above items and appending them to main orignial Div made under the tabs container Div.
+    
+  })
+  return topicsDiv
   // TASK 3
   // ---------------------
   // Implement this function which takes an array of strings ("topics") as its only argument.
@@ -13,9 +40,42 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+
+
+
+
 }
 
 const tabsAppender = (selector) => {
+
+const cssSelector = document.querySelector(selector)
+
+// create a var to take control of param being passed through the function.
+
+axios.get(`http://localhost:5001/api/topics`)
+
+// Ask for a axios api request with get and create the promise with response and catch.
+.then((response) => {
+
+  // find the data using console.log and assign said data to a varible
+  // assign said data with above function to a varible
+  // append said information to the varible being passed in this function.
+
+  const topics = response.data.topics;
+  const tabs = Tabs(topics);
+
+cssSelector.append(tabs);
+
+console.log(response.data)
+})
+.catch((error) => {
+  console.log('This is not working')
+})
+
+
+
+
+
   // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.
