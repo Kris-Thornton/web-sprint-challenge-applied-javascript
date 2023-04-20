@@ -60,13 +60,11 @@ const headerAppender = (selector) => {
   //
  const cssSelector = document.querySelector(selector) 
 const mainDiv = Header('title', 'date', 'temp');
-cssSelector.append(mainDiv)  
+cssSelector.appendChild(mainDiv)  
 
 
 
-// const entrypoint = document.querySelector(selector);
-// const headDiv = Header('title', 'date', 'temp');
-// entrypoint.append(headDiv);
+
 
 
 

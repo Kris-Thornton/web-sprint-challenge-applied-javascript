@@ -1,30 +1,31 @@
 import axios from 'axios'
 
 const Tabs = (topics) => {
-  
+
 
   const topicsDiv = document.createElement('div')
-topicsDiv.classList.add('topics');
+  topicsDiv.classList.add('topics');
 
-// making the first Div under the tabs container Div
-// Adding the class 'topics to the first Div called topicsDiv under the tabs container Div.
+  // making the first Div under the tabs container Div
+  // Adding the class 'topics to the first Div called topicsDiv under the tabs container Div.
 
 
-const newTab = topics.forEach((item) => {
-  // create a new var with a iteration through the topics param each time making a sub Div, adding a class of 'tab' and text info that is passed using the item param.
+  topics.forEach((topicString) => {
+    // create a new var with a iteration through the topics param each time making a sub Div, adding a class of 'tab' and text info that is passed using the item param.
     const liDiv = document.createElement('div');
     liDiv.classList.add('tab');
-    liDiv.textContent = item;
+    liDiv.textContent = topicString;
+    topicsDiv.appendChild(liDiv)
+    console.log(topicsDiv)
+   
 
-    // returning the above information
-    return liDiv
+
   })
 
-  newTab.forEach(item => {
-    topicsDiv.appendChild(item);
-// itterating through the above items and appending them to main orignial Div made under the tabs container Div.
-    
-  })
+
+  // itterating through the above items and appending them to main orignial Div made under the tabs container Div.
+
+
   return topicsDiv
   // TASK 3
   // ---------------------
@@ -48,29 +49,30 @@ const newTab = topics.forEach((item) => {
 
 const tabsAppender = (selector) => {
 
-const cssSelector = document.querySelector(selector)
+  const cssSelector = document.querySelector(selector)
 
-// create a var to take control of param being passed through the function.
+  // create a var to take control of param being passed through the function.
 
-axios.get(`http://localhost:5001/api/topics`)
+  axios.get(`http://localhost:5001/api/topics`)
 
-// Ask for a axios api request with get and create the promise with response and catch.
-.then((response) => {
+    // Ask for a axios api request with get and create the promise with response and catch.
+    .then((response) => {
 
-  // find the data using console.log and assign said data to a varible
-  // assign said data with above function to a varible
-  // append said information to the varible being passed in this function.
+      // find the data using console.log and assign said data to a varible
+      // assign said data with above function to a varible
+      // append said information to the varible being passed in this function.
 
-  const topics = response.data.topics;
-  const tabs = Tabs(topics);
+      const topics = response.data.topics;
+      const tabs = Tabs(topics);
 
-cssSelector.append(tabs);
+      cssSelector.appendChild(tabs);
 
-console.log(response.data)
-})
-.catch((error) => {
-  console.log('This is not working')
-})
+      
+    })
+    .catch((error) => {
+      console.log('This is not working')
+      console.log(error)
+    })
 
 
 
